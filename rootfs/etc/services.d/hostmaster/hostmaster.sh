@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/bin/bash
 ## https://github.com/ipumpkin/cloudrup/blob/master/docker-entrypoint.sh
 
 _drush_aegir() {
@@ -116,11 +116,11 @@ _drush_aegir @hostmaster en hosting_queued -y
 
 if [ ! -f /var/aegir/.drush ]; then
     mkdir -p /var/aegir/.drush
-    gosu aegir chown -R aegir:aegir /var/aegir/.drush
+    chown -R aegir:aegir /var/aegir/.drush
 fi
 if [ ! -f /var/aegir/config ]; then
     mkdir -p /var/aegir/config
-    gosu aegir chown -R aegir:aegir /var/aegir/config
+    chown -R aegir:aegir /var/aegir/config
 fi
 
 ls -lah /var/aegir

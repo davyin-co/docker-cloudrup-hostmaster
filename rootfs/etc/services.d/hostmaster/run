@@ -1,3 +1,4 @@
 #!/usr/bin/with-contenv bash
 bash ./hostmaster.sh
+bash ./crontab.sh
 exec gosu aegir drush @hostmaster hosting-queued
