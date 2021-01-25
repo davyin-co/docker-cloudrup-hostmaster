@@ -1,10 +1,10 @@
 FROM davyinsa/cloudrup-webserver:%%PHP_VERSION%%
 ENV TERM="xterm" \
     REGISTRY_REBUILD_VERSION=7.x-2.5 \
-    # PROVISION_REPO=https://github.com/ipumpkin/provision-1.git \
-    # PROVISION_BRANCH=cloudrup \
-    PROVISION_REPO=https://github.com/aegir-project/provision \
-    PROVISION_BRANCH=7.x-3.x \
+    PROVISION_REPO=https://github.com/ipumpkin/provision-1.git \
+    PROVISION_BRANCH=cloudrup \
+    # PROVISION_REPO=https://github.com/aegir-project/provision \
+    # PROVISION_BRANCH=7.x-3.x \
     # You may change this environment at run time. User UID 1 is created with this email address.
     AEGIR_CLIENT_EMAIL=aegir@aegir.local.computer \
     AEGIR_CLIENT_NAME=admin \
