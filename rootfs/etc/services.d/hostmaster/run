@@ -1,8 +1,13 @@
 #!/usr/bin/with-contenv bash
 chown -R aegir:aegir /var/aegir/
+echo "starting hostmaster ...."
 set -ex
-gosu aegir bash ./hostmaster.sh
-bash ./crontab.sh
+echo "implement hostmaster checking...."
+gosu aegir bash /etc/services.d/hostmaster/hostmaster.sh
+echo "setup hostmaster crontab ..."
+bash /etc/services.d/hostmaster/crontab.sh
 gosu aegir drush cc drush
+echo "hostmaster delete queue ..."
 gosu aegir drush @hostmaster sqlq "delete from semaphore where name like 'hosting_queue_%_running'"
+echo "setup hostmaster hosting-queued ..."
 exec gosu aegir drush @hostmaster hosting-queued
