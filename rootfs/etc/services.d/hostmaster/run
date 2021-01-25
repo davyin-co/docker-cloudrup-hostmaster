@@ -1,4 +1,8 @@
 #!/usr/bin/with-contenv bash
-bash ./hostmaster.sh
+chown -R aegir:aegir /var/aegir/
+set -ex
+gosu aegir bash ./hostmaster.sh
 bash ./crontab.sh
+gosu aegir drush cc drush
+gosu aegir drush @hostmaster sqlq "delete from semaphore where name like 'hosting_queue_%_running'"
 exec gosu aegir drush @hostmaster hosting-queued
