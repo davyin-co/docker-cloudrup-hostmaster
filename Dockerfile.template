@@ -1,7 +1,7 @@
 FROM davyinsa/cloudrup-webserver:%%PHP_VERSION%%
 ENV TERM="xterm" \
     REGISTRY_REBUILD_VERSION=7.x-2.5 \
-    PROVISION_REPO=https://github.com/ipumpkin/provision-1.git \
+    PROVISION_REPO=https://github.com/davyin-co/provision.git \
     PROVISION_BRANCH=cloudrup \
     # PROVISION_REPO=https://github.com/aegir-project/provision \
     # PROVISION_BRANCH=7.x-3.x \
