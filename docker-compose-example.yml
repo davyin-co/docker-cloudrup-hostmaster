@@ -1,16 +1,27 @@
 version: '3'
 services:
-  web:
-    image: davyinsa/cloudrup-webserver:7.3
+  hostmaster:
+    image: davyinsa/cloudrup-hostmaster:7.3
     restart: always
-    environment: 
-      - PHP_MEM_LIMIT=512M
-      - PHP_MAX_EXECUTION_TIME=60
-      - PHP_UPLOAD_SIZE=64M
-      - PHP_MAX_INPUT_VARS=2000
-      - PHP_DISPLAY_ERRORS=On
+    privileged: true
+    hostname: cloudrup
+    container_name: cloudrup
     volumes:
-      - ./aegir:/var/aegir
-    ports:
-      - "80:80"
-      - "22:22"
+      - ~/www/cloudrup/aegir:/var/aegir
+      - ./cloudrup.make:/tmp/custom.make
+    environment:
+      http_proxy: http://192.168.1.4:1087
+      https_proxy: http://192.168.1.4:1087
+      VIRTUAL_HOST: cloudrup.docker
+      HOSTNAME: cloudrup.docker
+      AEGIR_MAKEFILE: /tmp/custom.make
+      #AEGIR_MAKEFILE: https://github.com/opendevshop/devshop/blob/1.x/build-devmaster.make
+      MYSQL_ROOT_PASSWORD: password
+      AEGIR_DATABASE_SERVER: mysql
+      AEGIR_HOSTMASTER_ROOT: /var/aegir/cloudrup
+      AEGIR_ROOT: /var/aegir
+      AEGIR_PROFILE: devmaster
+networks:
+  default:
+    external:
+      name: proxy
