@@ -18,6 +18,7 @@ projects[devmaster][download][branch] = cloudrup
 projects[devmaster][download][url] = https://github.com/ipumpkin/devmaster.git
 ```
 
+docker-compose.yml content
 ```bash
 version: '3'
 services:
