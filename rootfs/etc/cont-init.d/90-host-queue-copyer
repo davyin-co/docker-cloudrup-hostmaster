@@ -13,6 +13,7 @@ if [ $CLOUDRUP_QUEUE_THREAD -eq 1 ]; then
   chmod a+x /etc/services.d/task-queue/run
 else
   cp /etc/services.d/task-queue/run-multip /etc/services.d/task-queue/run
+  chmod a+x /etc/services.d/task-queue/run
   thread_count=1
   while [ $thread_count -lt $CLOUDRUP_QUEUE_THREAD ]; do
     cp -Rf /etc/services.d/task-queue "/etc/services.d/task-queue-${thread_count}"
