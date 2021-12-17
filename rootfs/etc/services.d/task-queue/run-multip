@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+thread_name=${PWD##*/}
+echo "setup hostmaster hosting-queued ${thread_name} ..."
+exec gosu aegir drush @hostmaster cloudrup-hosting-queued --thread=$thread_name

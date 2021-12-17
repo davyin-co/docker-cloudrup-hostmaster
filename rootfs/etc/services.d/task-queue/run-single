@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+echo "setup hostmaster hosting-queued ..."
+exec gosu aegir drush @hostmaster hosting-queued

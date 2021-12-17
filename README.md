@@ -41,6 +41,7 @@ services:
       AEGIR_HOSTMASTER_ROOT: /var/aegir/cloudrup
       AEGIR_ROOT: /var/aegir
       AEGIR_PROFILE: devmaster
+      CLOUDRUP_QUEUE_THREAD: 2
 networks:
   default:
     external:
@@ -48,6 +49,12 @@ networks:
 ```
 
 # 环境变量支持
+#### hostmaster
+|Name|Desciption|
+|----|----------|
+|HOSTNAME|Hostmaster domain name|
+|AEGIR_MAKEFILE|Hostmaster install drush makefile|
+|CLOUDRUP_QUEUE_THREAD|Hostmaster task queue thread count, default 1|
 #### apache & php
 |Name|Desciption|
 |----|----------|

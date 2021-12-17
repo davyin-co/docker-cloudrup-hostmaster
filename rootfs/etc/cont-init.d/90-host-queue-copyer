@@ -1,0 +1,22 @@
+#!/usr/bin/with-contenv bash
+if [ -z $CLOUDRUP_QUEUE_THREAD ]; then
+	CLOUDRUP_QUEUE_THREAD=1
+fi
+if [ $CLOUDRUP_QUEUE_THREAD -gt 10 ]; then
+	CLOUDRUP_QUEUE_THREAD=10
+fi
+
+echo "setup hostmaster hosting-queued service: ${CLOUDRUP_QUEUE_THREAD}"
+
+if [ $CLOUDRUP_QUEUE_THREAD -eq 1 ]; then
+  cp -f /etc/services.d/task-queue/run-single /etc/services.d/task-queue/run
+  chmod a+x /etc/services.d/task-queue/run
+else
+  cp /etc/services.d/task-queue/run-multip /etc/services.d/task-queue/run
+  thread_count=1
+  while [ $thread_count -lt $CLOUDRUP_QUEUE_THREAD ]; do
+    cp -Rf /etc/services.d/task-queue "/etc/services.d/task-queue-${thread_count}"
+    chmod a+x "/etc/services.d/task-queue-${thread_count}/run"
+    thread_count=$(( thread_count+1 ))
+  done
+fi
